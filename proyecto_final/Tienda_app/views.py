@@ -29,7 +29,7 @@ def login_request(request):
                 login (request, nombre_usuario)
                 return render(request, "Tienda_app/tienda.html", {"mensaje":f"Has iniciado sesion, Bienvenido {usuario}"})
             else:
-                return render(request, "Tienda_app/login.html", {"mensaje":"Usuario o contraseña incorrecta"})
+                return render(request, "Tienda_app/login error.html", {"mensaje":f"Usuario o contraseña incorrecta"})
            
         else:
 
