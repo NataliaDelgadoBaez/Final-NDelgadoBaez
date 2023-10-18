@@ -9,12 +9,7 @@
 
 <form method="POST">
     {% csrf_token %}
-    <div>{{ form.nombre }}</div>
-    <div>{{ form.artista }}</div>
-    <div>{{ form.año }}</div>
-    <div>{{ form.precio }}</div>
-    
-    
+    {{form.as_p}}
     <input type="submit" value="Enviar">
 
 </form>

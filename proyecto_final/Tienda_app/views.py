@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from Tienda_app.models import Disco
-from Tienda_app.forms import Crearalbumform, Buscaralbumform, UserRegisterForm
+from Tienda_app.forms import BuscarDiscoForm, UserRegisterForm, UserEditForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -14,30 +14,25 @@ from django.urls import reverse_lazy
 # Acciones de usuario
 
 def login_request(request):
-
+    msg_login = ""
     if request.method == 'POST':
-        form = AuthenticationForm(request, data = request.POST)
+        form = AuthenticationForm(request, data=request.POST)
 
-        if form.is_valid(): 
+        if form.is_valid():
 
             usuario = form.cleaned_data.get('username')
-            clave = form.cleaned_data.get('password')
+            contrasenia = form.cleaned_data.get('password')
 
-            nombre_usuario = authenticate(username= usuario, password=clave)
+            user = authenticate(username= usuario, password=contrasenia)
 
-            if usuario is not None:
-                login (request, nombre_usuario)
-                return render(request, "Tienda_app/tienda.html", {"mensaje":f"Has iniciado sesion, Bienvenido {usuario}"})
-            else:
-                return render(request, "Tienda_app/login error.html", {"mensaje":f"Usuario o contraseña incorrecta"})
-           
-        else:
+            if user is not None:
+                login(request, user)
+                return render(request, "Tienda_app/index.html")
 
-            return render(request,"Tienda_app/login.html", {"mensaje":"Formulario erroneo"})
+        msg_login = "Usuario o contraseña incorrectos"
 
     form = AuthenticationForm()
-
-    return render(request, "Tienda_app/login.html", {"form": form})
+    return render(request, "Tienda_app/login.html", {"form": form, "msg_login": msg_login})
 
 def register(request):
 
@@ -56,6 +51,35 @@ def register(request):
             form = UserRegisterForm()     
 
       return render(request,"Tienda_app/soy nuevo.html" ,  {"form":form})
+
+@login_required
+def edit(request):
+
+    usuario = request.user
+
+    if request.method == 'POST':
+
+        miFormulario = UserEditForm(request.POST, request.FILES)
+
+        if miFormulario.is_valid():
+
+            informacion = miFormulario.cleaned_data
+
+            if informacion["password1"] != informacion["password2"]:
+                datos = {
+                    'first_name': usuario.first_name,
+                    'email': usuario.email
+                }
+                miFormulario = UserEditForm(initial=datos)
+
+            else:
+                usuario.email = informacion['email']
+                if informacion["password1"]:
+                    usuario.set_password(informacion["password1"])
+                usuario.last_name = informacion['last_name']
+                usuario.first_name = informacion['first_name']
+                usuario.save()
+
 
 def inicio(request):
     return render(request, "Tienda_app/index.html")
@@ -93,26 +117,42 @@ def entrevistas(request):
 
 class DiscoList (LoginRequiredMixin, ListView):
     model = Disco
-    template_name = "Tienda_app/ DiscoList.html"
+    template_name = "Tienda_app/DiscoList.html"
     
 class DiscoDetail(LoginRequiredMixin, DetailView):
     model = Disco
-    template_name = "Tienda_app/ disco_detalles.html"
+    template_name = "Tienda_app/DiscoDetail.html"
     
 class DiscoCreate (LoginRequiredMixin, CreateView):
     model = Disco
-    template_name = "Tienda_app/ DiscoCreate.html"
-    success_url = reverse_lazy ("list")
+    template_name = "Tienda_app/DiscoCreate.html"
+    success_url = reverse_lazy ("DiscoList")
     fields = ['nombre', 'autor', 'año', 'precio']
 
 class DiscoUpdate (LoginRequiredMixin, UpdateView):
     model = Disco
-    template_name = "Tienda_app/ disco_edicion.html"
-    success_url = reverse_lazy ("list")
+    template_name = "Tienda_app/DiscoUpdate.html"
+    success_url = reverse_lazy ("DiscoList")
     fields = ['nombre', 'autor', 'año']
     
 class DiscoDelete (LoginRequiredMixin, DeleteView):
     model = Disco
-    template_name = "Tienda_app/ disco_borrado.html"
-    success_url = reverse_lazy ("list")
+    template_name = "Tienda_app/DiscoDelete.html"
+    success_url = reverse_lazy ("DiscoList")
     
+def Buscardisco (request):
+ 
+    if request.method == "POST":
+ 
+        miFormulario = Buscardisco(request.POST) 
+        print(miFormulario)
+ 
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+            discos = Disco.objects.filter(nombre_icontains=informacion['disco'])
+            
+            return render(request, "Tienda_app/buscar disco.html",{"discos": discos})
+    else:
+            miFormulario = BuscarDiscoForm()
+ 
+            return render(request, "Tienda_app/mostrar busqueda.html", {"miFormulario": miFormulario})

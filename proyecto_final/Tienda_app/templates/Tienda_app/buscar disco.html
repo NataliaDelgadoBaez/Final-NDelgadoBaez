@@ -1,0 +1,21 @@
+{% extends 'Tienda_app/base_tienda.html' %}
+{% load static %}
+
+{% block section1 %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    
+    <table>
+
+        {{ miFormulario.as_table }}
+        
+    </table>
+
+    <input type="submit" value="BUSCAR">
+
+</form>
+
+
+{% endblock %}
+
