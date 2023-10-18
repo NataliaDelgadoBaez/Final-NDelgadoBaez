@@ -1,0 +1,19 @@
+{% extends 'Tienda_app/base_tienda.html' %}
+{% load static %}
+
+{% block title %} Iniciar sesion {% endblock title %}
+
+{% block main %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit">Iniciar sesion</button>
+</form>
+
+
+
+{% endblock %}
+
+
+

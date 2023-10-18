@@ -1,0 +1,24 @@
+{% extends 'Tienda_app/base_tienda.html' %}
+{% load static %}
+
+{% block title %} Iniciar sesion {% endblock title %}
+
+{% block main %}
+
+<body>
+
+    {% for disco in discos %}
+        <li>{{disco}}</li>
+
+        <button>
+            <a href="{% url 'EliminarDisco' disco.id %}"> Eliminar</a>
+        </button>
+
+
+        <a href="discos">Agregar otro dISCO</a>
+
+    {% endfor %}
+
+</body>
+
+{% endblock %}

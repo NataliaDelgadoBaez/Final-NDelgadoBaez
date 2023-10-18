@@ -1,0 +1,45 @@
+{% extends 'Tienda_app/base_blog.html' %}
+{% load static %}
+
+{% block section1 %}
+
+<div class="container">
+    <h1 class="my-4">EnTrEvIsTaS ExClUsiVaS</h1>
+
+    <div class="row align-items-stretch">
+        <div class="col-md-4">
+            <div class="card mb-4 d-flex">
+                <img src="{% static 'Tienda_app/assets/img/maple.webp' %}" class="card-img-top" alt="Entrevista 1">
+                <div class="card-body flex-fill">
+                    <h5 class="card-title">Entrevista a Maple Glider</h5>
+                    <p class="card-text">"Estar aquí con este puñado de experiencias..."</p>
+                    <a href="https://www.dodmagazine.es/entrevistas/" class="btn btn-primary">Quiero más</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 d-flex">
+                <img src="{% static 'Tienda_app/assets/img/natalia.jpg' %}" class="card-img-top" alt="Entrevista 3">
+                <div class="card-body flex-fill">
+                    <h5 class "card-title">Natalia Lacunza</h5>
+                    <p class="card-text">Me costo empezar mi carrera...</p>
+                    <a href="https://www.santandersmusic.com/entrevistas" class="btn btn-primary">Quiero más</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 d-flex">
+                <img src="{% static 'Tienda_app/assets/img/Lucky.png' %}" class="card-img-top" alt="Entrevista 2">
+                <div class="card-body flex-fill">
+                    <h5 class="card-title">Entrevista a Dani, Lucky Strikewalker</h5>
+                    <p class="card-text">Segundo disco "La gran estafa del rock and roll"'</p>
+                    <a href="https://planetamusik.com/blog/entrevistas/" class="btn btn-primary">Quiero más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

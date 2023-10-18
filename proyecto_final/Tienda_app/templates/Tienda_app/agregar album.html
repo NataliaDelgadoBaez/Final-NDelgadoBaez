@@ -1,0 +1,27 @@
+{% extends 'Tienda_app/base_tienda.html' %}
+{% load static %}
+
+{% block title %} formulario {% endblock title %}
+
+{% block section1 %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <h1>Que otros escuchen tu MuSiCa</h1>
+    
+    <table>
+        
+        {{ miFormulario.as_table }}
+        
+    </table>
+
+    <input type="submit" value="Enviar">
+
+</form>
+
+{% endblock %}
+
+
+
+

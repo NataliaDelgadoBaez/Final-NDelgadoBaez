@@ -1,0 +1,24 @@
+{% extends 'Tienda_app/base_tienda.html' %}
+{% load static %}
+
+{% block title %} Iniciar sesion {% endblock title %}
+
+{% block main %}
+
+<ul>
+    {% for disco in discos %}
+
+        <li>Disco: {{ disco.nombre}} {{ disco.artista }} <a href="url "</a>
+
+
+        </li>
+</ul>
+
+
+
+    {% for d in discos %}
+        <li>{{d}}</li>
+    {% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'Tienda_app/base_tienda.html' %}
+{% load static %}
+
+{% block title %} Iniciar sesion {% endblock title %}
+
+{% block main %}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Carrito de Compras</h2>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Producto 1</td>
+                <td>$10.00</td>
+                <td>2</td>
+                <td>$20.00</td>
+            </tr>
+            <tr>
+                <td>Producto 2</td>
+                <td>$15.00</td>
+                <td>1</td>
+                <td>$15.00</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="text-end">
+        <p>Total: $35.00</p>
+        <a href="{% url 'Fcarrito' %}" class="btn btn-primary">Finalizar Compra</a>
+    </div>
+</div>
+
+
+
+{% endblock %}
