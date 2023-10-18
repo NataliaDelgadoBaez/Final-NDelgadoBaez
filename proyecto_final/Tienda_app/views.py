@@ -66,9 +66,6 @@ def tienda(request):
 def blog(request):
     return render(request, "tienda_app/blog.html")
 
-def busca_favorito(request):
-    return render(request, "Tienda_app/busca tu favorito.html")
-
 @login_required
 def carrito(request):
     return render(request, "Tienda_app/carrito.html")
@@ -91,51 +88,12 @@ def conocenos(request):
 def entrevistas(request):
     return render(request, "Tienda_app/entrevistas.html")
 
-def Agregaralbum (request):
- 
-    if request.method == "POST":
- 
-        miFormulario = Agregaralbum(request.POST) 
-        print(miFormulario)
- 
-        if miFormulario.is_valid():
-            informacion = miFormulario.cleaned_data
-            album=  Disco(album=request.POST['album'],autor=request.POST['artista'], año=request.POST['año'], precio=request.POST['precio'])
-            album.save()
-            return render(request, "Tienda_app/index.html")
-    else:
-            miFormulario = Crearalbumform()
- 
-            return render(request, "Tienda_app/agregar album.html", {"miFormulario": miFormulario})
-
-def Buscar_album(request):
-    if request.method == "POST":
-        miFormulario = Buscaralbumform(request.POST) 
-
-        if miFormulario.is_valid():
-            informacion = miFormulario.cleaned_data
-            
-            discos = Disco.objects.filter(nombre__icontains=informacion["album"])
-
-            return render(request, "Tienda_app/busca tu favorito.html", {"album": discos})
-    else:
-        miFormulario = Buscaralbumform()
-
-    return render(request, "Tienda_app/busca tu favorito.html", {"miFormulario": miFormulario})
-
-def leer_disco(request):
-
-      discos = Disco.objects.all() 
-      
-      contexto= {"discos":discos} 
-
-      return render(request, "Tienda_app/leeralbum.html",contexto)
 
 #Acciones con el disco
 
 class DiscoList (LoginRequiredMixin, ListView):
     model = Disco
-    template_name = "Tienda_app/ disco_lista.html"
+    template_name = "Tienda_app/ DiscoList.html"
     
 class DiscoDetail(LoginRequiredMixin, DetailView):
     model = Disco
@@ -143,15 +101,15 @@ class DiscoDetail(LoginRequiredMixin, DetailView):
     
 class DiscoCreate (LoginRequiredMixin, CreateView):
     model = Disco
-    template_name = "Tienda_app/ disco_create.html"
+    template_name = "Tienda_app/ DiscoCreate.html"
     success_url = reverse_lazy ("list")
-    fields = ['nombre', 'autor']
+    fields = ['nombre', 'autor', 'año', 'precio']
 
 class DiscoUpdate (LoginRequiredMixin, UpdateView):
     model = Disco
     template_name = "Tienda_app/ disco_edicion.html"
     success_url = reverse_lazy ("list")
-    fields = ['nombre', 'autor']
+    fields = ['nombre', 'autor', 'año']
     
 class DiscoDelete (LoginRequiredMixin, DeleteView):
     model = Disco

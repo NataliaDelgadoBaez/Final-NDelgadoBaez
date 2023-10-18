@@ -1,0 +1,25 @@
+{% extends 'Tienda_app/base_tienda.html' %}
+{% load static %}
+
+{% block title %} Inicio {% endblock title %}
+
+{% block main %}
+    
+
+
+<form method="POST">
+    {% csrf_token %}
+    <div>{{ form.nombre }}</div>
+    <div>{{ form.artista }}</div>
+    <div>{{ form.año }}</div>
+    <div>{{ form.precio }}</div>
+    
+    
+    <input type="submit" value="Enviar">
+
+</form>
+
+
+
+
+{% endblock main %}
