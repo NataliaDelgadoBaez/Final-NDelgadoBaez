@@ -9,13 +9,13 @@ from django.conf.urls.static import static
 #Generales
 urlpatterns = [
     
-    path('conoceme/', views.about, name='Conoceme'),
+    path('conocenos/', views.about, name='Conocenos'),
     
     path('inicio/', views.inicio, name="Inicio"),
     path('tienda/', views.tienda, name="Tienda"),
     path('login/', views.login_request, name="Login"),
     path('logout', LogoutView.as_view(template_name='Tienda_app/logout.html'), name='Logout'),
-    path('edit/', views.edit, name="Edit"),
+    path('edituser/', views.edit, name="edituser"),
 
     path('soy nuevo/', views.register, name="Soy nuevo"),
     path('logout/', LogoutView.as_view(template_name='Tienda_app/logout.html'), name="Logout"),
@@ -27,6 +27,8 @@ urlpatterns = [
     path('musica de siempre/', views.musica_siempre, name="Musica de siempre"),
     path('musica de hoy/', views.musica_hoy, name="Musica de hoy"),
     path('entrevistas/', views.entrevistas, name="Entrevistas"),
+    
+    path('creardisco/', views.creardisco, name="creardisco"),
     
     
 ]

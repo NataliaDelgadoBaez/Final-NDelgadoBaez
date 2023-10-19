@@ -118,6 +118,8 @@ def conocenos(request):
 def entrevistas(request):
     return render(request, "Tienda_app/entrevistas.html")
 
+def creardisco(request):
+    return render(request, "Tienda_app/creardisco.html")
 
 #Acciones con el disco
 

@@ -44,6 +44,7 @@ class UserEditForm(UserCreationForm):
         model = User
         fields = ['email', 'last_name', 'first_name', 'password1', 'password2']    
 
+
 class FormularioComentario(forms.ModelForm):
     class Meta:
         model = Comentario

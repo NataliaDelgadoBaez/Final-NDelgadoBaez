@@ -4,17 +4,14 @@
 {% block title %} Inicio {% endblock title %}
 
 {% block main %}
+
+
     
-
-
 <form method="POST">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="Enviar">
+    <input type="submit" class="btn btn-dark" value="Enviar">
 
 </form>
-
-
-
 
 {% endblock main %}

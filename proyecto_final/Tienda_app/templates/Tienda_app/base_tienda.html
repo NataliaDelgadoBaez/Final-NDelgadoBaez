@@ -22,7 +22,7 @@
                     <a class="nav-link" href="{% url 'Inicio' %}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'DiscoCreate' %}">Vende tu disco</a>
+                    <a class="nav-link" href="{% url 'creardisco' %}">Vende tu disco</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'Carrito' %}">Carrito</a>
@@ -30,7 +30,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'Busca tu favorito' %}">Busca tu favorito</a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'DiscoList' %}">Mis Discos</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'Soy nuevo' %}">Soy nuevo</a>
                 </li>
@@ -53,12 +55,8 @@
         
         {% block main %}
         {% endblock %}
-        
-    <footer class="bg-dark text-white text-center">
-        <div class="container">
-            <p>&copy; 2023 RoCkoLa CuLtUrAl</p>
-        </div>
-    </footer>
+
+    
 
     <!-- Agrega el enlace al archivo JavaScript de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

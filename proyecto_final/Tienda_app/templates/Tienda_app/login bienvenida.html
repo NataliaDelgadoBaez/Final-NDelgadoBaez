@@ -6,21 +6,13 @@
 {% block main %}
 
 
-<style>
-    .maintenance-page {
-        text-align: center;
-        margin-top: 100px;
-    }
-    
-    .maintenance-message {
-        font-size: 24px;
-    }
-</style>
-
 <div class="container">
-    <div class="maintenance-page">
-        <span class="maintenance-icon"><i class="fas fa-tools"></i></span>
-        <p class="maintenance-message">!BIENVENIDO! HAS INICIDO SESION</p>
+    <div class="bienvenida">
+        
+        <p>!BIENVENIDO! HAS INICIDO</p>
+
+        <a href="{% url 'edituser' %}" class="btn btn-dark">Editar Usuario</a>
+        <a href="#"class="btn btn-dark">Eliminar Usuario</a>
     </div>
 </div>
 
