@@ -1,0 +1,22 @@
+{% extends 'Tienda_app/base_tienda.html' %}
+{% load static %}
+
+{% block section1 %}
+
+<form action="" method="POST" class="mt-4">
+    {% csrf_token %}
+    
+    <div class="container">
+        <h1 class="text-center">EncOnTrA Tu Favorito de Todos los Tiempos</h1>
+        
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                {{ miFormulario.as_table }}
+            </table>
+        </div>
+        <button type="submit" class="btn btn-primary">BUSCAR</button>
+    </div>
+</form>
+
+{% endblock %}
+

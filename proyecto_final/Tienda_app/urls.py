@@ -1,7 +1,8 @@
 from django.urls import path
 from Tienda_app import views
 from django.contrib.auth.views import LogoutView
-
+from django.conf import settings
+from django.conf.urls.static import static
 #Generales
 urlpatterns = [
     
@@ -11,7 +12,7 @@ urlpatterns = [
     path('logout', LogoutView.as_view(template_name='Tienda_app/logout.html'), name='Logout'),
     path('edit/', views.edit, name="Edit"),
 
-    path('register/', views.register, name="Soy nuevo"),
+    path('soy nuevo/', views.register, name="Soy nuevo"),
     path('logout/', LogoutView.as_view(template_name='Tienda_app/logout.html'), name="Logout"),
     path('busca tu favorito/', views.Buscardisco, name="Busca tu favorito"),
     path('carrito/', views.carrito, name="Carrito"),
@@ -22,8 +23,10 @@ urlpatterns = [
     path('musica de hoy/', views.musica_hoy, name="Musica de hoy"),
     path('entrevistas/', views.entrevistas, name="Entrevistas"),
     path('conocenos/', views.conocenos, name="Conocenos"),
-    #path('leerDisco', views.leer_disco, name = "LeerDisco")
+    
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
     
 # Discos
 urlpatterns += [

@@ -1,20 +1,22 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from Tienda_app.models import Comentario
+
  
 class DiscoFormulario(forms.Form):
-    nombre = forms.CharField()
+    disco = forms.CharField()
     autor= forms.CharField()
     año = forms.IntegerField()
     precio = forms.IntegerField()
     
 class Formulario(forms.Form):
-    curso = forms.CharField()
+    disco = forms.CharField()
     autor = forms.IntegerField()
     
 class BuscarDiscoForm(forms.Form):
-    album= forms.CharField()
     autor= forms.CharField()
+    
     
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -42,3 +44,11 @@ class UserEditForm(UserCreationForm):
         model = User
         fields = ['email', 'last_name', 'first_name', 'password1', 'password2']    
 
+class FormularioComentario(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ('nombre', 'mensaje')
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'mensaje' : forms.Textarea(attrs={'class': 'form-control'}),
+        }

@@ -1,0 +1,41 @@
+{% extends 'Tienda_app/base_tienda.html' %}
+{% load static %}
+
+{% block title %} formulario {% endblock title %}
+
+{% block main %}
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<div class="container text-center">
+
+<form method="post">{% csrf_token %}
+    <h4>Estás seguro(a) que deseas borrar el disco {{disco.nombre}} {{disco.autor}} ?</h4>
+    <p>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </p>
+</form>
+
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
+

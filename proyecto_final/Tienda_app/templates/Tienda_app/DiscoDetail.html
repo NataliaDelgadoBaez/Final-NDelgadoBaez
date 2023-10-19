@@ -1,0 +1,45 @@
+{% extends 'Tienda_app/base_tienda.html' %}
+{% load static %}
+
+{% block title %} formulario {% endblock title %}
+
+{% block content %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{disco.nombre}}</h4></p>
+{% if disco.imagenInstrumento %}
+    <p><img src="{{amplificador.imagenInstrumento.url}}" alt=""></p>
+{% endif %}
+<p>nombre: {{disco.nombre}}</p>
+<p>autor: {{disco.autor}}</p>
+<p>año: {{disco.año}}</p>
+<p>precio: {{disco.precio}}</p>
+
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+    {% if not disco.comentarios.all %}
+        No han comentado este instrumento
+    {% else %}
+        {% for comentario in disco.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' %}">Agrega un Comentario</a>
+    </div>
+</div>
+<br>
+{% endblock %}
+
+

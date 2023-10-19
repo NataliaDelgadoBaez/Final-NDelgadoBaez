@@ -27,7 +27,7 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                return render(request, "Tienda_app/index.html")
+                return render(request, "Tienda_app/login bienvenida.html")
 
         msg_login = "Usuario o contraseña incorrectos"
 
@@ -140,19 +140,18 @@ class DiscoDelete (LoginRequiredMixin, DeleteView):
     template_name = "Tienda_app/DiscoDelete.html"
     success_url = reverse_lazy ("DiscoList")
     
-def Buscardisco (request):
- 
+
+def Buscardisco(request):
     if request.method == "POST":
- 
-        miFormulario = Buscardisco(request.POST) 
-        print(miFormulario)
- 
+        miFormulario = BuscarDiscoForm(request.POST)
+
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
-            discos = Disco.objects.filter(nombre_icontains=informacion['disco'])
             
-            return render(request, "Tienda_app/buscar disco.html",{"discos": discos})
+            discos = Disco.objects.filter(nombre__icontains = informacion['autor'])
+
+            return render(request, "Tienda_app/mostra tu favorito.html", {"discos": discos})
     else:
-            miFormulario = BuscarDiscoForm()
- 
-            return render(request, "Tienda_app/mostrar busqueda.html", {"miFormulario": miFormulario})
+        miFormulario = BuscarDiscoForm()
+
+    return render(request, "Tienda_app/busca tu favorito.html", {"miFormulario": miFormulario})
