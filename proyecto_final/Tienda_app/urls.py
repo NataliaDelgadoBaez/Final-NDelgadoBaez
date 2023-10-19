@@ -3,8 +3,13 @@ from Tienda_app import views
 from django.contrib.auth.views import LogoutView
 from django.conf import settings
 from django.conf.urls.static import static
+
+
+
 #Generales
 urlpatterns = [
+    
+    path('conoceme/', views.about, name='Conoceme'),
     
     path('inicio/', views.inicio, name="Inicio"),
     path('tienda/', views.tienda, name="Tienda"),
@@ -22,7 +27,7 @@ urlpatterns = [
     path('musica de siempre/', views.musica_siempre, name="Musica de siempre"),
     path('musica de hoy/', views.musica_hoy, name="Musica de hoy"),
     path('entrevistas/', views.entrevistas, name="Entrevistas"),
-    path('conocenos/', views.conocenos, name="Conocenos"),
+    
     
 ]
 

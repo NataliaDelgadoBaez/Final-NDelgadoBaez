@@ -11,6 +11,12 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 
+
+# ACERCA DE MI
+
+def about(request):
+    return render(request, 'Tienda_app/conoceme.html', {})
+
 # Acciones de usuario
 
 def login_request(request):
