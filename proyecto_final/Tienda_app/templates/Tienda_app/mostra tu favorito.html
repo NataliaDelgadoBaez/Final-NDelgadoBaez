@@ -5,15 +5,25 @@
 
 {% block main %}
 
-{% for disco in discos %}
+<div class="container">
+    <h1 class="my-4">DiScOs a La VeNtA</h1>
 
-<p>nombre: {{ disco.nombre }}</p>
-<p>artista: {{ disco.autor }}</p>
-<p>año: {{ disco.año }}</p>
-<p>precio: {{ disco.precio }}</p>
-
-{% endfor %}
-
+    <div class="row">
+        {% for disco in discos %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ disco.nombre }}</h5>
+                        <p class="card-text"><strong>Artista:</strong> {{ disco.autor }}</p>
+                        <p class="card-text"><strong>Año:</strong> {{ disco.año }}</p>
+                        <p class="card-text"><strong>Precio:</strong> ${{ disco.precio }}</p>
+                        <a href="#" class="btn btn-dark">Añadir al Carrito</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock main %}
 

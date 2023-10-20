@@ -6,7 +6,8 @@ class Disco(models.Model):
     nombre = models.CharField(max_length=40)
     autor = models.CharField(max_length=40)
     año = models.IntegerField()
-    precio = models.IntegerField()
+    imagen = models.ImageField(null=True, blank=True, upload_to="assets/img/")
+    precio = models.IntegerField(null=True, blank=True)
     
     def __str__(self):
         return f"{self.nombre} - {self.autor} - {self.año}"
@@ -17,11 +18,6 @@ class Usuario(models.Model):
     apellido = models.CharField(max_length=20)
     email = models.EmailField(max_length=40)
 
-class Producto(models.Model):
-    album = models.CharField(max_length=40)
-    artista = models.CharField(max_length=40)
-    precio = models.IntegerField()
-    
 
 class Comentario(models.Model):
     comentario = models.ForeignKey(Disco, related_name='comentarios', on_delete=models.CASCADE, null=True)
@@ -35,6 +31,9 @@ class Comentario(models.Model):
     def __str__(self):
         return '%s - %s' % (self.nombre, self.comentario)
 
+class Avatar(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='avatares', null=True, blank=True)
 
 
 

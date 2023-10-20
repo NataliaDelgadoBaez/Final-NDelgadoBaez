@@ -24,14 +24,17 @@
             <div class="card-body">
             <h5 class="card-title">{{ disco.nombre }}</h5>
             <p class="card-text">Artista: {{ disco.artista }}</p>
-            <a href="{% url 'DiscoDetail' disco.id %}" class="btn btn-primary">Ver</a>
-            <a href="{% url 'DiscoUpdate' disco.id %}" class="btn btn-primary">Editar</a>
-            <a href="{% url 'DiscoDelete' disco.id %}" class="btn btn-primary">Borrar</a>
+            <p class="card-text">Año: {{ disco.año }}</p>
+            <p class="card-text">Imagen: {{ disco.imagen }}</p>
+            <p class="card-text">Precio: {{ disco.precio }}</p>
+            <a href="{% url 'DiscoDetail' disco.id %}" class="btn btn-dark">Ver</a>
+            <a href="{% url 'DiscoUpdate' disco.id %}" class="btn btn-dark">Editar</a>
+            <a href="{% url 'DiscoDelete' disco.id %}" class="btn btn-dark">Borrar</a>
             </div>
         </div>
     {% endfor %}
 </div>
 
-<a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'DiscoCreate' %}">Agregar nuevo</a>
+<a class="btn btn-dark btn-xl rounded-pill mt-5" href="{% url 'DiscoCreate' %}">Agregar nuevo</a>
 
 {% endblock main %}

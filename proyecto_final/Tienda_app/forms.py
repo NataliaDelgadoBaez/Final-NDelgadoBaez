@@ -8,11 +8,15 @@ class DiscoFormulario(forms.Form):
     disco = forms.CharField()
     autor= forms.CharField()
     año = forms.IntegerField()
+    imagen = forms.ImageField()
     precio = forms.IntegerField()
     
 class Formulario(forms.Form):
     disco = forms.CharField()
     autor = forms.IntegerField()
+    año = forms.IntegerField()
+    imagen = forms.ImageField()
+    precio = forms.IntegerField()
     
 class BuscarDiscoForm(forms.Form):
     autor= forms.CharField()
@@ -32,7 +36,7 @@ class Meta:
 class UserEditForm(UserCreationForm):
 
     # Obligatorios
-    email = forms.EmailField(label="Ingrese su email:")
+    email = forms.EmailField(label="Modificar su email:")
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput, required=False)
     password2 = forms.CharField(label='Repetir la contraseña', widget=forms.PasswordInput, required=False)
 

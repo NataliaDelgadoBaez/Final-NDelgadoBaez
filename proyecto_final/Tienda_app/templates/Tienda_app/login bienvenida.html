@@ -5,19 +5,25 @@
 
 {% block main %}
 
-
-<div class="container">
-    <div class="bienvenida">
-        
-        <p>!BIENVENIDO! HAS INICIDO</p>
-
-        <a href="{% url 'edituser' %}" class="btn btn-dark">Editar Usuario</a>
-        <a href="#"class="btn btn-dark">Eliminar Usuario</a>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="logout-container text-center text-lg">
+                <h1>!BiEnVeNiDo! HaS InIcIaDo SeSiOn</h1>
+                <br>
+                <br>
+                <br>
+                
+                <a href="{% url 'edituser' %}" class="btn btn-dark">Editar Usuario</a>
+                <a href="#"class="btn btn-dark">Eliminar Usuario</a>
+                
+                
+            </div>
+        </div>
     </div>
 </div>
 
-{% endblock %}
-
+{% endblock main %}
 
 
 

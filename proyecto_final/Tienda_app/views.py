@@ -65,33 +65,33 @@ def edit(request):
 
     if request.method == 'POST':
 
-        miFormulario = UserEditForm(request.POST, request.FILES)
+        miFormulario = UserEditForm(request.POST)
 
         if miFormulario.is_valid():
 
             informacion = miFormulario.cleaned_data
+            
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.save()
+            
+            return render(request,"Tienda_app/index.html" )
+        
+    else:
+        
+        miFormulario = UserEditForm(initial={ 'email' : usuario.email})
+        
+    return render(request, "Tienda_app/edituser.html", {"miFormulario":miFormulario, "usuario":usuario}) 
+    
 
-            if informacion["password1"] != informacion["password2"]:
-                datos = {
-                    'first_name': usuario.first_name,
-                    'email': usuario.email
-                }
-                miFormulario = UserEditForm(initial=datos)
-
-            else:
-                usuario.email = informacion['email']
-                if informacion["password1"]:
-                    usuario.set_password(informacion["password1"])
-                usuario.last_name = informacion['last_name']
-                usuario.first_name = informacion['first_name']
-                usuario.save()
-
-
+            
 def inicio(request):
     return render(request, "Tienda_app/index.html")
 
 def tienda(request):
-    return render(request, "Tienda_app/tienda.html")
+    discos = Disco.objects.all()
+    return render(request, "Tienda_app/tienda.html", {"discos": discos})
 
 def blog(request):
     return render(request, "tienda_app/blog.html")
@@ -135,13 +135,13 @@ class DiscoCreate (LoginRequiredMixin, CreateView):
     model = Disco
     template_name = "Tienda_app/DiscoCreate.html"
     success_url = reverse_lazy ("DiscoList")
-    fields = ['nombre', 'autor', 'año', 'precio']
+    fields = ['nombre', 'autor', 'año', 'imagen', 'precio']
 
 class DiscoUpdate (LoginRequiredMixin, UpdateView):
     model = Disco
     template_name = "Tienda_app/DiscoUpdate.html"
     success_url = reverse_lazy ("DiscoList")
-    fields = ['nombre', 'autor', 'año']
+    fields = ['nombre', 'autor', 'año', 'imagen', 'precio']
     
 class DiscoDelete (LoginRequiredMixin, DeleteView):
     model = Disco
@@ -156,7 +156,7 @@ def Buscardisco(request):
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
             
-            discos = Disco.objects.filter(nombre__icontains = informacion['autor'])
+            discos = Disco.objects.filter(autor__icontains = informacion['autor'])
 
             return render(request, "Tienda_app/mostra tu favorito.html", {"discos": discos})
     else:

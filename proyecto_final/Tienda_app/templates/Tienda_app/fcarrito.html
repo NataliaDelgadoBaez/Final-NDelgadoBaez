@@ -1,36 +1,25 @@
 {% extends 'Tienda_app/base_tienda.html' %}
 {% load static %}
 
-{% block title %} Iniciar sesion {% endblock title %}
+{% block section1 %}
 
-{% block main %}
+<style>
+    .maintenance-page {
+        text-align: center;
+        margin-top: 100px;
+    }
+    
+    .maintenance-message {
+        font-size: 24px;
+    }
+</style>
 
-    <style>
-        body {
-            background-color: #f5f5f5; /* Fondo gris claro */
-        }
-        .logout-container {
-            background-color: #fff; /* Fondo blanco para el contenedor */
-            border: 1px solid #dcdcdc; /* Borde gris claro */
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-        }
-        
-    </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="logout-container">
-                    <h2 class="text-center">Esta pagina esta en construccion</h2>
-                    <p class="text-center">¡EspErAmOs QuE VuElVaS!</p>
-                </div>
-            </div>
-        </div>
+<div class="container">
+    <div class="maintenance-page">
+        <span class="maintenance-icon"><i class="fas fa-tools"></i></span>
+        <p class="maintenance-message">Sitio en Mantenimiento. Estaremos de vuelta pronto.</p>
     </div>
-</body>
+</div>
 
 {% endblock %}
 
