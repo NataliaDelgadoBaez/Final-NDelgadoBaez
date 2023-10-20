@@ -23,9 +23,11 @@
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
             <h5 class="card-title">{{ disco.nombre }}</h5>
-            <p class="card-text">Artista: {{ disco.artista }}</p>
+            <p class="card-text">Artista: {{ disco.autor }}</p>
             <p class="card-text">Año: {{ disco.año }}</p>
-            <p class="card-text">Imagen: {{ disco.imagen }}</p>
+            {% if disco.imagen %}
+            <img src="{{disco.imagen.url}}" class="card-img-top" alt="...">
+            {% endif %}
             <p class="card-text">Precio: {{ disco.precio }}</p>
             <a href="{% url 'DiscoDetail' disco.id %}" class="btn btn-dark">Ver</a>
             <a href="{% url 'DiscoUpdate' disco.id %}" class="btn btn-dark">Editar</a>

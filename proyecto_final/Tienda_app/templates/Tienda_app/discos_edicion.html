@@ -5,14 +5,15 @@
 
 {% block main %}
 
-{% for album in discos %}
+<form action="" method="POST" enctype="multipart/form-data">{% csrf_token%}
 
-<p>nombre: {{ disco.nombre }}</p>
-<p>artista: {{ disco.artista }}</p>
-<p>año: {{ disco.año }}</p>
-<p>precio: {{ disco.precio }}</p>
+    <table>
 
-{% endfor %}
+        {{ form.as_table }}
+    </table>
+<input type="submit", value="Enviar">
+
+</form>
 
 
 {% endblock main %}

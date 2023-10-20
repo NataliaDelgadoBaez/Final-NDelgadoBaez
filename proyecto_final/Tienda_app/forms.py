@@ -5,14 +5,14 @@ from Tienda_app.models import Comentario
 
  
 class DiscoFormulario(forms.Form):
-    disco = forms.CharField()
+    nombre = forms.CharField()
     autor= forms.CharField()
     año = forms.IntegerField()
     imagen = forms.ImageField()
     precio = forms.IntegerField()
     
 class Formulario(forms.Form):
-    disco = forms.CharField()
+    nombre = forms.CharField()
     autor = forms.IntegerField()
     año = forms.IntegerField()
     imagen = forms.ImageField()

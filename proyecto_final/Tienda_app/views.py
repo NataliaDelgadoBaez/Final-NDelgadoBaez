@@ -127,21 +127,35 @@ class DiscoList (LoginRequiredMixin, ListView):
     model = Disco
     template_name = "Tienda_app/DiscoList.html"
     
+    def get_queryset(self):
+        usuario_actual = self.request.user
+
+        # Filtramos los discos que pertenecen al usuario actual
+        queryset = Disco.objects.filter(user=usuario_actual)
+        return queryset
+    
 class DiscoDetail(LoginRequiredMixin, DetailView):
     model = Disco
     template_name = "Tienda_app/DiscoDetail.html"
+    context_object_name = "disco"
+
     
 class DiscoCreate (LoginRequiredMixin, CreateView):
     model = Disco
     template_name = "Tienda_app/DiscoCreate.html"
-    success_url = reverse_lazy ("DiscoList")
+    success_url = reverse_lazy("DiscoList")
     fields = ['nombre', 'autor', 'año', 'imagen', 'precio']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class DiscoUpdate (LoginRequiredMixin, UpdateView):
     model = Disco
-    template_name = "Tienda_app/DiscoUpdate.html"
-    success_url = reverse_lazy ("DiscoList")
+    template_name = "Tienda_app/discos_edicion.html"
+    success_url = reverse_lazy("DiscoList")
     fields = ['nombre', 'autor', 'año', 'imagen', 'precio']
+
     
 class DiscoDelete (LoginRequiredMixin, DeleteView):
     model = Disco

@@ -8,9 +8,11 @@ class Disco(models.Model):
     año = models.IntegerField()
     imagen = models.ImageField(null=True, blank=True, upload_to="assets/img/")
     precio = models.IntegerField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def _str_(self):
+        return f"{self.nombre} - {self.autor} - {self.año} - {self.imagen} - {self.precio}"
     
-    def __str__(self):
-        return f"{self.nombre} - {self.autor} - {self.año}"
 
     
 class Usuario(models.Model):
