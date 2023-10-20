@@ -5,14 +5,15 @@
 
 {% block main %}
 
+<div class="container text-center mt-10">
+    <h1>InGrEsA Tu DiScO</h1>
+    <form method="POST"  enctype="multipart/form-data">
 
-<form method="POST"  enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" class="btn btn-dark" value="Enviar">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-dark" value="Enviar">
 
-</form>
-
-</form>
+    </form>
+</div>
 
 {% endblock main %}

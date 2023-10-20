@@ -6,31 +6,21 @@
 {% block content %}
 
 <br>
-<br>
 
-<div class="container">
-
-
-    <div class="container">
-        <div class="row">
-            {% for disco in discos %}
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    {% if disco.imagen %}
-                    <img src="{{disco.imagen.url}}" class="card-img-top" alt="...">
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{disco.nombre}}</h5>
-                        <p class="card-text">Artista: {{disco.autor}}</p>
-                        <p class="card-text">Año: {{disco.año}}</p>
-                        <p class="card-text">Precio: ${{disco.precio}}</p>
-                        <a href="#" class="btn btn-dark">Añadir al Carrito</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+<div class="container mt-4">
+    <div class="card">
+        {% if disco.imagen %}
+            <img src="{{ disco.imagen.url }}" class="card-img-top" alt="Disco">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ disco.nombre }}</h5>
+            <p class="card-text">Artista: {{ disco.autor }}</p>
+            <p class="card-text">Año: {{ disco.año }}</p>
+            <p class="card-text">Descripción: {{ disco.descripcion }}</p>
+            <p class="card-text">Precio: {{ disco.precio }}</p>
         </div>
     </div>
-    
-    {% endblock content %}
+</div>
+
+{% endblock content %}
 

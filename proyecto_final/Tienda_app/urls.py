@@ -21,7 +21,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='Tienda_app/logout.html'), name="Logout"),
     path('busca tu favorito/', views.Buscardisco, name="Busca tu favorito"),
     path('carrito/', views.carrito, name="Carrito"),
-    #path('carrito/', views.final_carrito, name="Fcarrito"),
+    path('carrito/', views.final_carrito, name="Fcarrito"),
     #path('crear album/', views.Agregaralbum, name="Crear album"),
     path('blog/', views.blog, name="Blog"),
     path('musica de siempre/', views.musica_siempre, name="Musica de siempre"),
@@ -33,7 +33,7 @@ urlpatterns = [
     
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
     
 # Discos
 urlpatterns += [

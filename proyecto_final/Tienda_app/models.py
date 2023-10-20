@@ -7,6 +7,7 @@ class Disco(models.Model):
     autor = models.CharField(max_length=40)
     año = models.IntegerField()
     imagen = models.ImageField(null=True, blank=True, upload_to="assets/img/")
+    descripcion = models.CharField(max_length=120, null=True, blank=True)
     precio = models.IntegerField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

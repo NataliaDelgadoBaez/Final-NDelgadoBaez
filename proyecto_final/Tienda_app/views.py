@@ -144,7 +144,7 @@ class DiscoCreate (LoginRequiredMixin, CreateView):
     model = Disco
     template_name = "Tienda_app/DiscoCreate.html"
     success_url = reverse_lazy("DiscoList")
-    fields = ['nombre', 'autor', 'año', 'imagen', 'precio']
+    fields = ['imagen', 'nombre', 'autor', 'año', 'descripcion', 'precio']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -154,7 +154,7 @@ class DiscoUpdate (LoginRequiredMixin, UpdateView):
     model = Disco
     template_name = "Tienda_app/discos_edicion.html"
     success_url = reverse_lazy("DiscoList")
-    fields = ['nombre', 'autor', 'año', 'imagen', 'precio']
+    fields = ['nombre', 'autor', 'año', 'imagen','descripcion', 'precio']
 
     
 class DiscoDelete (LoginRequiredMixin, DeleteView):

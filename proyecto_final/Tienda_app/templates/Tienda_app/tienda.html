@@ -17,7 +17,9 @@
     {% for disco in discos %}
       <div class="col-md-4">
         <div class="card mb-4">
-          <img src="{% static 'ruta/imagen.jpg' %}" class="card-img-top" alt="{{ disco.nombre }}">
+            {% if disco.imagen %}
+            <img src="{{ disco.imagen.url }}" class="card-img-top" alt="Disco">
+            {% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ disco.nombre }}</h5>
             <p class="card-text">Artista: {{ disco.autor }}</p>
