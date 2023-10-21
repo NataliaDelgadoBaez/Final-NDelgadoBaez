@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 from django.contrib.auth.models import User
 
 class Disco(models.Model):
@@ -34,9 +33,10 @@ class Comentario(models.Model):
     def __str__(self):
         return '%s - %s' % (self.nombre, self.comentario)
 
-class Avatar(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to='avatares', null=True, blank=True)
+class Carrito(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Disco, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
 
 
 

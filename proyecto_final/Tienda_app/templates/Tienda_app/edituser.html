@@ -2,21 +2,21 @@
 
 {% load static %}
 
-{% block title %} Login {% endblock title %}
+{% block title %} edit user {% endblock title %}
 
 {% block main %}
-    <form action="" method="POST" enctype="multipart/form-data">
+    
+<div class="container mt-4">
+    <div class="text mt-4">
+        <h1 class="text-center">EdItA TuS DaToS</h1>
+    </div>
+    <form method="post">
         {% csrf_token %}
-
-        <table>
-
+        <table class="table table-bordered">
             {{ miFormulario.as_table }}
-            <br>
-            <input type="submit" value="Actualizar">
-
         </table>
-
-
+            <button type="submit" class="btn btn-dark">Actualizar</button>
     </form>
+</div>
 
 {% endblock main %}

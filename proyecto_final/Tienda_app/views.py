@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from Tienda_app.models import Disco
+from Tienda_app.models import Disco, Carrito
 from Tienda_app.forms import BuscarDiscoForm, UserRegisterForm, UserEditForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
@@ -97,8 +97,25 @@ def blog(request):
     return render(request, "tienda_app/blog.html")
 
 @login_required
-def carrito(request):
-    return render(request, "Tienda_app/carrito.html")
+def agregar_al_carrito(request, producto_id):
+    producto = Disco.objects.get(id=producto_id)
+    usuario = request.user
+
+    # Verifica si el producto ya está en el carrito del usuario
+    carrito_existente = Carrito.objects.filter(usuario=usuario, producto=producto)
+
+    if carrito_existente.exists():
+        # Si el producto ya está en el carrito, aumenta la cantidad
+        carrito = carrito_existente.first()
+        carrito.cantidad += 1
+        carrito.save()
+    else:
+        # Si el producto no está en el carrito, crea un nuevo registro
+        carrito = carrito(usuario=usuario, producto=producto)
+        carrito.save()
+
+    return render('agregar_al_carrito')  # Redirige a la página del carrito
+
 
 def final_carrito(request):
     return render(request, "Tienda_app/fcarrito.html")
@@ -140,7 +157,7 @@ class DiscoCreate (LoginRequiredMixin, CreateView):
     model = Disco
     template_name = "Tienda_app/DiscoCreate.html"
     success_url = reverse_lazy("DiscoList")
-    fields = ['imagen', 'nombre', 'autor', 'año', 'descripcion', 'precio']
+    fields = ['imagen', 'nombre', 'autor', 'año', 'descripcion', 'precio','user']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
