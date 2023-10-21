@@ -1,15 +1,14 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from Tienda_app.models import Comentario
+from Tienda_app.models import Comentario, Disco
 
  
-class DiscoFormulario(forms.Form):
-    nombre = forms.CharField()
-    autor= forms.CharField()
-    año = forms.IntegerField()
-    imagen = forms.ImageField()
-    precio = forms.IntegerField()
+class DiscoFormulario(forms.ModelForm):
+    
+    class Meta:
+        model = Disco
+        fields = ['nombre', 'autor', 'año', 'imagen', 'precio']   
     
 class Formulario(forms.Form):
     nombre = forms.CharField()

@@ -50,7 +50,7 @@ def register(request):
 
                   username = form.cleaned_data['username']
                   form.save()
-                  return render(request,"Tienda_app/register.html")
+                  return render(request,"Tienda_app/registro.html")
 
       else:
                  
@@ -118,13 +118,14 @@ def agregar_al_carrito(request, pk):
     # Guarda los cambios en la base de datos
     carrito.save()
 
-    # Calcula el total del carrito de compras
+    # Calcula el total del carrito de compras y obtiene todos los productos en el carrito junto con sus cantidades
     total = 0
+    productos_carrito = []
     for item in Carrito.objects.filter(usuario=usuario):
         total += item.producto.precio * item.cantidad
+        productos_carrito.append((item.producto, item.cantidad))
 
-    return render(request, 'Tienda_app/agregar_al_carrito.html', {'total': total})
-
+    return render(request, 'Tienda_app/agregar_al_carrito.html', {'total': total, 'productos_carrito': productos_carrito})
 
 def final_carrito(request):
     return render(request, "Tienda_app/fcarrito.html")
@@ -174,7 +175,7 @@ class DiscoCreate (LoginRequiredMixin, CreateView):
 
 class DiscoUpdate (LoginRequiredMixin, UpdateView):
     model = Disco
-    template_name = "Tienda_app/discos_edicion.html"
+    template_name = "Tienda_app/DiscoUpdate.html"
     success_url = reverse_lazy("DiscoList")
     fields = ['nombre', 'autor', 'año', 'imagen','descripcion', 'precio']
    

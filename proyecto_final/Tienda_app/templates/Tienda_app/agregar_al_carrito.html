@@ -8,26 +8,23 @@
 <div class="container mt-5">
     <h2 class="mb-4">Carrito de Compras</h2>
 
-    {% for disco in discos %} 
+    {% for producto, cantidad in productos_carrito %}
     <table class="table">
         <thead>
             <tr>
-                <th>{{ disco.nombre }}</th>
-                <th> {{ disco.autor }}</th>
-                <th>{{ disco.año }}</th>
-                <th>${{ disco.precio }}</th>
+                <th>{{ producto.nombre }}</th>
+                <th>{{ producto.autor }}</th>
+                <th>{{ producto.año }}</th>
+                <th>${{ producto.precio }}</th>
+                <th>Cantidad: {{ cantidad }}</th>
             </tr>
         </thead>
-        
     </table>
-
     {% endfor %}
     
     <div class="text-end">
         <p>Total: ${{ total }}</p>
-        <a href="{% url 'Fcarrito' %}" class="btn btn-primary">Finalizar Compra</a>
+        <a href="{% url 'Fcarrito' %}" class="btn btn-dark">Finalizar Compra</a>
     </div>
-
-
-
+    
 {% endblock %}
