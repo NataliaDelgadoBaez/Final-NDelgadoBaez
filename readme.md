@@ -8,3 +8,5 @@ La otra parte consta de una tienda virtual la cual se encarga de la venta de dis
 Los no logueados tienen el acceso a la lista general de discos, asi como tambien a acceder a la busqueda por autor y ver los detalles de la misma.  
 
 Todos los usuarios pueden editar sus perfiles y hacer comentarios. 
+
+link video explicativo https://www.youtube.com/watch?v=A23T18hGqNk.
