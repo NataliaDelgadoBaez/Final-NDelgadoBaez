@@ -12,7 +12,7 @@ from django.urls import reverse_lazy
 
 
 
-# ACERCA DE MI
+# Conoceme
 
 def about(request):
     return render(request, 'Tienda_app/conoceme.html', {})
@@ -56,7 +56,7 @@ def register(request):
                  
             form = UserRegisterForm()     
 
-      return render(request,"Tienda_app/soy nuevo.html" ,  {"form":form})
+      return render(request,"Tienda_app/registro.html" ,  {"form":form})
 
 @login_required
 def edit(request):
@@ -76,7 +76,7 @@ def edit(request):
             usuario.password2 = informacion['password2']
             usuario.save()
             
-            return render(request,"Tienda_app/index.html" )
+            return render(request,"Tienda_app/edituser_exitoso.html" )
         
     else:
         
@@ -84,7 +84,7 @@ def edit(request):
         
     return render(request, "Tienda_app/edituser.html", {"miFormulario":miFormulario, "usuario":usuario}) 
     
-
+# General
             
 def inicio(request):
     return render(request, "Tienda_app/index.html")
@@ -118,9 +118,6 @@ def conocenos(request):
 def entrevistas(request):
     return render(request, "Tienda_app/entrevistas.html")
 
-def creardisco(request):
-    return render(request, "Tienda_app/creardisco.html")
-
 #Acciones con el disco
 
 class DiscoList (LoginRequiredMixin, ListView):
@@ -138,8 +135,7 @@ class DiscoDetail(LoginRequiredMixin, DetailView):
     model = Disco
     template_name = "Tienda_app/DiscoDetail.html"
     context_object_name = "disco"
-
-    
+  
 class DiscoCreate (LoginRequiredMixin, CreateView):
     model = Disco
     template_name = "Tienda_app/DiscoCreate.html"
@@ -155,14 +151,12 @@ class DiscoUpdate (LoginRequiredMixin, UpdateView):
     template_name = "Tienda_app/discos_edicion.html"
     success_url = reverse_lazy("DiscoList")
     fields = ['nombre', 'autor', 'año', 'imagen','descripcion', 'precio']
-
-    
+   
 class DiscoDelete (LoginRequiredMixin, DeleteView):
     model = Disco
     template_name = "Tienda_app/DiscoDelete.html"
     success_url = reverse_lazy ("DiscoList")
     
-
 def Buscardisco(request):
     if request.method == "POST":
         miFormulario = BuscarDiscoForm(request.POST)
@@ -172,8 +166,11 @@ def Buscardisco(request):
             
             discos = Disco.objects.filter(autor__icontains = informacion['autor'])
 
-            return render(request, "Tienda_app/mostra tu favorito.html", {"discos": discos})
+            return render(request, "Tienda_app/mostra_tu_favorito.html", {"discos": discos})
     else:
         miFormulario = BuscarDiscoForm()
 
-    return render(request, "Tienda_app/busca tu favorito.html", {"miFormulario": miFormulario})
+    return render(request, "Tienda_app/busca_tu_favorito.html", {"miFormulario": miFormulario})
+
+def creardisco(request):
+    return render(request, "Tienda_app/creardisco.html")

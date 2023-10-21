@@ -7,31 +7,28 @@
 {% block main %}
 
 
-<div class="row">
+<div class="row text-center mt-4">
     <br>
     <br>
     <br>
     <h1>TuS DiScOs</h1>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    
     {% for disco in object_list %}
         <div class="card" style="width: 18rem;" >
-            <img src="..." class="card-img-top" alt="...">
+            
             <div class="card-body">
-            <h5 class="card-title">{{ disco.nombre }}</h5>
-            <p class="card-text">Artista: {{ disco.autor }}</p>
-            <p class="card-text">Año: {{ disco.año }}</p>
-            {% if disco.imagen %}
-            <img src="{{disco.imagen.url}}" class="card-img-top" alt="...">
-            {% endif %}
-            <p class="card-text">Precio: {{ disco.precio }}</p>
-            <a href="{% url 'DiscoDetail' disco.id %}" class="btn btn-dark">Ver</a>
-            <a href="{% url 'DiscoUpdate' disco.id %}" class="btn btn-dark">Editar</a>
-            <a href="{% url 'DiscoDelete' disco.id %}" class="btn btn-dark">Borrar</a>
+                {% if disco.imagen %}
+                    <img src="{{disco.imagen.url}}" class="card-img-top" alt="...">
+                {% endif %}
+                <h5 class="card-title">{{ disco.nombre }}</h5>
+                <p class="card-text">Artista: {{ disco.autor }}</p>
+                <p class="card-text">Año: {{ disco.año }}</p>
+                <p class="card-text">Precio: {{ disco.precio }}</p>
+                <a href="{% url 'DiscoDetail' disco.id %}" class="btn btn-dark">Ver</a>
+                <a href="{% url 'DiscoUpdate' disco.id %}" class="btn btn-dark">Editar</a>
+                <a href="{% url 'DiscoDelete' disco.id %}" class="btn btn-dark">Borrar</a>
             </div>
         </div>
     {% endfor %}
