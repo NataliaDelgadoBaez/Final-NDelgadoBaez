@@ -97,24 +97,33 @@ def blog(request):
     return render(request, "tienda_app/blog.html")
 
 @login_required
-def agregar_al_carrito(request, producto_id):
-    producto = Disco.objects.get(id=producto_id)
+def agregar_al_carrito(request, pk):
+    producto = Disco.objects.get(id=pk)
     usuario = request.user
 
     # Verifica si el producto ya está en el carrito del usuario
     carrito_existente = Carrito.objects.filter(usuario=usuario, producto=producto)
 
+    # Inicializa carrito
+    carrito = None
+
     if carrito_existente.exists():
         # Si el producto ya está en el carrito, aumenta la cantidad
         carrito = carrito_existente.first()
         carrito.cantidad += 1
-        carrito.save()
     else:
         # Si el producto no está en el carrito, crea un nuevo registro
-        carrito = carrito(usuario=usuario, producto=producto)
-        carrito.save()
+        carrito = Carrito(usuario=usuario, producto=producto)
 
-    return render('agregar_al_carrito')  # Redirige a la página del carrito
+    # Guarda los cambios en la base de datos
+    carrito.save()
+
+    # Calcula el total del carrito de compras
+    total = 0
+    for item in Carrito.objects.filter(usuario=usuario):
+        total += item.producto.precio * item.cantidad
+
+    return render(request, 'Tienda_app/agregar_al_carrito.html', {'total': total})
 
 
 def final_carrito(request):

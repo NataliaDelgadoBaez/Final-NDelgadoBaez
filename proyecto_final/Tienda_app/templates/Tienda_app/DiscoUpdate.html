@@ -7,27 +7,48 @@
 
 <br>
 <br>
-
-{% if user.id == disco.usuario.id %}
 <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="login">
+                <h1>EdItA Tu DiScO</h1>
 
-    <h4>Editar Disco</h4>
-    
+                <form action="" method="POST" class="mt-4">
+                    
+                    <form action="" method="POST" class="form-signin">
+                        {% csrf_token %}
+                        
+                        <div class="form-group">
+                            {{ form.nombre.label_tag }}
+                            {{ form.nombre }}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.autor.label_tag }}
+                            {{ form.autor }}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.año.label_tag }}
+                            {{ form.año }}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.descripcion.label_tag }}
+                            {{ form.descripcion }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.precio.label_tag }}
+                            {{ form.precio }}
+                        </div>
+                        
+                        <button type="submit" class="btn btn-dark btn-block">Actualizate</button>
+                    </form>
+                
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div class="container">
-    <div class="form-group">
-        <form method="post" enctype="multipart/form-data">{% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Guardar</button>
-        </form>
-    </div>    
-</div>
-<br>
-{% else %}
-<div class="container">
-<h4>No tienes acceso a esta pagina!</h4>
-</div>
-{% endif %}
 
 {% endblock %}
